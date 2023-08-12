@@ -1,14 +1,22 @@
 {
   "users": [
     {
-      "id": "1",
+      "id": 1,
       "username": "Max",
-      "password": "123456789"
+      "password": "123456789",
+      "secretWord": "secret"
     },
     {
-      "id": "2",
+      "id": 2,
       "username": "Marina",
-      "password": "7777777"
+      "password": "7777777",
+      "secretWord": "secret"
+    },
+    {
+      "username": "Alexey",
+      "password": "5555555",
+      "secretWord": "слово!!!!",
+      "id": 3
     }
   ]
 }

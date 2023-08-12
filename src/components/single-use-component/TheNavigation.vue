@@ -6,14 +6,19 @@
             <router-link to="/new" class="nav_item" v-if-auth>Создать заметку</router-link>
         </ul>
         <ul class="nav_auth">
-            <router-link to="/login" class="nav_item">Войти</router-link>
-            <router-link to="/registration" class="nav_item">Регистрация</router-link>
+            <router-link to="/login" class="nav_item" v-if="!userStore.user.id">Войти</router-link>
+            <router-link to="/registration" class="nav_item" v-if="!userStore.user.id">Регистрация</router-link>
+            <reusable-button round_warning width="100px" v-if="userStore.user.id" @push="logout">Выйти</reusable-button>
         </ul>
     </nav>
 </template>
 
 <script setup lang="ts">
-
+import {useUserStore} from "@/pinia/userStore.ts";
+const userStore = useUserStore()
+function logout(){
+    userStore.user = {}
+}
 </script>
 <style lang="scss" scoped>
 .nav_wrapper{

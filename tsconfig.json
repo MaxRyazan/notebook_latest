@@ -8,7 +8,7 @@
     "paths": {
       "@/*": ["./src/*", "./dist/*"],
       "@reusable/*": ["./src/components/reusable/*", "./dist/components/reusable/*"],
-      "@components/*": ["./src/components/**", "./dist/components/**"],
+      "@components/*": ["./src/components/*", "./dist/components/*"],
     },
 
     /* Bundler mode */

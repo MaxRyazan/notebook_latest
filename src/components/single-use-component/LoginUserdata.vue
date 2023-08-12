@@ -13,6 +13,9 @@ import {computed, ref, Ref} from "vue";
 import {LoginData} from "@/types.js";
 import {helpers} from "@vuelidate/validators";
 import useVuelidate from "@vuelidate/core";
+import {useUserStore} from "@/pinia/userStore.ts";
+import {useRouter} from "vue-router";
+const router = useRouter()
 
 defineEmits(['forgot'])
 const userData: Ref<LoginData> = ref({
@@ -37,8 +40,11 @@ const passwordValidator = (value: string) => {
 }
 const v$ = useVuelidate(validate, userData)
 async function login() {
-    const result = await v$.value.$validate()
-    if(result) alert(userData.value.username)
+    const userStore = useUserStore()
+    const isValid = await v$.value.$validate()
+    if(!isValid)return
+    await userStore.login(userData.value.username, userData.value.password)
+    await router.push('/')
 }
 
 </script>

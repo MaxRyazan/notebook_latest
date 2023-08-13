@@ -6,5 +6,9 @@
 
 </script>
 <style lang="scss" scoped>
-
+.all_wrapper{
+  width: 400px;
+  height: 300px;
+  background-color: pink;
+}
 </style>

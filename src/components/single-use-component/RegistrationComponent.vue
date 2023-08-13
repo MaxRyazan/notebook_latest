@@ -18,7 +18,8 @@ const regData: Ref<RegData> = ref({
     username: '',
     password: '',
     confirmPassword: '',
-    secretWord: ''
+    secretWord: '',
+    notes: []
 })
 async function submitForm(){
     const isValid = await v$.value.$validate()

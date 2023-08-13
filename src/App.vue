@@ -19,10 +19,11 @@ import TheNavigation from "@/components/single-use-component/TheNavigation.vue";
   margin: 0 auto;
 }
 .rout-enter-from{
-  opacity: 0;
+  transform: translateX(-100vw);
 }
 .rout-leave-to{
-  opacity: 0;
+  position: absolute;
+  transform: translateX(100vw);
 }
 .rout-enter-active,
 .rout-leave-active{

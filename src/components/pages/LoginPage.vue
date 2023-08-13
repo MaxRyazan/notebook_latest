@@ -1,7 +1,7 @@
 <template>
     <div class="form_wrapper">
-        <login-userdata @forgot="isForgot=true" v-if="!isForgot"/>
-        <restore-userdata @restore="isForgot=false" @goBack="isForgot=false" v-if="isForgot"/>
+        <login-userdata class="component" @forgot="isForgot=true" v-if="!isForgot"/>
+        <restore-userdata class="component" @restore="isForgot=false" @goBack="isForgot=false" v-if="isForgot"/>
     </div>
 </template>
 
@@ -18,8 +18,10 @@ const isForgot = ref(false)
   position: relative;
   width: 100%;
   max-width: 400px;
-  margin: 50vh auto 0;
-  transform: translateY(-20vh);
+  margin: 30vh auto 0;
 }
-
+.component{
+  transition: .25s;
+  position: absolute;
+}
 </style>

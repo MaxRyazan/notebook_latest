@@ -20,9 +20,15 @@ export default {
         const response: AxiosResponse = await axios.post(`http://localhost:3000/users`, {
             username: regData.username,
             password: regData.password,
-            secretWord: regData.secretWord
+            secretWord: regData.secretWord,
+            notes: regData.notes
         })
-        console.log(response)
         userStore.user = response.data
+    },
+
+    async updateUser(user: IUser){
+        await axios.patch(`http://localhost:3000/users/${user.id}`, {
+            notes: user.notes
+        })
     }
 }

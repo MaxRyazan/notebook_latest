@@ -18,12 +18,12 @@ const routes = [
     {
         path: "/new",
         component: () => import("@/components/pages/NewNotePage.vue"),
-        beforeEnter: () => {
-            const userStore = useUserStore()
-            if(!userStore.user.id){
-                return false
-            }
-        },
+        // beforeEnter: () => {
+        //     const userStore = useUserStore()
+        //     if(!userStore.user.id){
+        //         return false
+        //     }
+        // },
     },
     {
         path: "/login",

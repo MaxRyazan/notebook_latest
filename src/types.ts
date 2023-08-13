@@ -10,7 +10,11 @@ export interface Note {
     userId: number
     title: string
     text: string
+    tags: string[]
+    dateTime: number
 }
+
+export type NewNote = Omit<Note, 'id'>
 
 export interface LoginData {
     username: string
@@ -19,5 +23,6 @@ export interface LoginData {
 
 export interface RegData extends LoginData{
     confirmPassword: string,
-    secretWord: string
+    secretWord: string,
+    notes: Note[]
 }

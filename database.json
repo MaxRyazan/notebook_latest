@@ -1,22 +1,54 @@
 {
   "users": [
     {
-      "id": 1,
       "username": "Max",
       "password": "123456789",
-      "secretWord": "secret"
+      "secretWord": "max1111",
+      "notes": [
+        {
+          "userId": 1,
+          "title": "1212",
+          "text": "13444444444444444",
+          "tags": [
+            "34234234"
+          ],
+          "dateTime": 1691946218022,
+          "id": 1
+        },
+        {
+          "userId": 1,
+          "title": "22222",
+          "text": "bbbbbbbbbbbbbbbbb",
+          "tags": [
+            "22222"
+          ],
+          "dateTime": 1691946253164,
+          "id": 2
+        }
+      ],
+      "id": 1
+    }
+  ],
+  "notes": [
+    {
+      "userId": 1,
+      "title": "1212",
+      "text": "13444444444444444",
+      "tags": [
+        "34234234"
+      ],
+      "dateTime": 1691946218022,
+      "id": 1
     },
     {
-      "id": 2,
-      "username": "Marina",
-      "password": "7777777",
-      "secretWord": "secret"
-    },
-    {
-      "username": "Alexey",
-      "password": "5555555",
-      "secretWord": "слово!!!!",
-      "id": 3
+      "userId": 1,
+      "title": "22222",
+      "text": "bbbbbbbbbbbbbbbbb",
+      "tags": [
+        "22222"
+      ],
+      "dateTime": 1691946253164,
+      "id": 2
     }
   ]
 }

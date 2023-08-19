@@ -13,6 +13,15 @@
             <li>Scss</li>
             <li>JSON-server</li>
         </ul>
+
+        <pre>
+            Дополнительная информация:
+            Users:
+            {
+                "username": "Max",
+                "password":"123456789"
+            }
+        </pre>
     </div>
 </template>
 

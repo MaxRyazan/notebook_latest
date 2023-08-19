@@ -1,5 +1,19 @@
 <template>
-    <div class="all_wrapper">main page</div>
+    <div class="all_wrapper">
+        <span>
+            Программа - записная книжка. Создана с использованием:
+        </span>
+        <ul>
+            <li>Vue3.js</li>
+            <li>Pinia</li>
+            <li>Vite</li>
+            <li>vue-router, vue-animations, vuelidate</li>
+            <li>Typescript</li>
+            <li>Axios</li>
+            <li>Scss</li>
+            <li>JSON-server</li>
+        </ul>
+    </div>
 </template>
 
 <script setup lang="ts">
@@ -7,8 +21,7 @@
 </script>
 <style lang="scss" scoped>
 .all_wrapper{
-  width: 400px;
-  height: 300px;
-  background-color: orange;
+  font-family: Fifaks, sans-serif;
+  font-size: 20px;
 }
 </style>

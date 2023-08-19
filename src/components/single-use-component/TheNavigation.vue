@@ -15,9 +15,10 @@
 
 <script setup lang="ts">
 import {useUserStore} from "@/pinia/userStore.ts";
+import {IUser} from "@/types.ts";
 const userStore = useUserStore()
 function logout(){
-    userStore.user = {}
+    userStore.user = {} as IUser
 }
 </script>
 <style lang="scss" scoped>

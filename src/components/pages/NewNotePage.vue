@@ -32,12 +32,14 @@ const  newNote: Ref<NewNote> = ref({
 
 
 async function createNote(){
-    console.log(newNote.value)
     const isValid = await v$.value.$validate()
     if(!isValid)return
     Object.assign(newNote.value.tags, transformTags(stringTags.value))
     newNote.value.dateTime = Date.now()
     await noteStore.createNote(newNote.value)
+    newNote.value.title = ''
+    newNote.value.text = ''
+    stringTags.value = ''
 }
 
 const validation = computed(() => {

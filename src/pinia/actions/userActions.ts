@@ -8,8 +8,11 @@ export default {
         const allUsers: AxiosResponse = await axios.get(`http://localhost:3000/users`)
         const userFromDB = allUsers.data.filter((user: IUser) => user.username === username)[0]
         if(!userFromDB) return
+        console.log(userFromDB.password)
+        console.log(password)
         if(userFromDB.password !== password) return
         Object.assign(userStore.user, userFromDB)
+        console.log(userStore.user)
     },
 
     async registration(regData: RegData){
@@ -30,5 +33,10 @@ export default {
         await axios.patch(`http://localhost:3000/users/${user.id}`, {
             notes: user.notes
         })
+    },
+
+    async getById(userId: number): Promise<IUser>{
+        const result: AxiosResponse = await axios.get(`http://localhost:3000/users/${userId}`)
+        return result.data
     }
 }

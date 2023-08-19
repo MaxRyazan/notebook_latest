@@ -1,7 +1,10 @@
 <script setup lang="ts">
-import {Note} from "@/types.ts";
-import {computed} from "vue";
+import {IUser, Note} from "@/types.ts";
+import {computed, onMounted, ref, Ref} from "vue";
+import {useUserStore} from "@/pinia/userStore.ts";
 
+const userStore = useUserStore()
+const author: Ref<IUser> = ref({} as IUser)
 const props = defineProps<{
     singleNote: Note
 }>()
@@ -10,9 +13,13 @@ const dateTime = computed(() => {
     const propDate = new Date(props.singleNote.dateTime)
     const day = propDate.getDate()
     const month = (propDate.getMonth() + 1) < 10 ? '0' + (propDate.getMonth() + 1) : (propDate.getMonth() + 1)
+    const year = propDate.getFullYear()
     const hour = propDate.getHours() < 10 ? '0' + propDate.getHours() : propDate.getHours()
     const min =  propDate.getMinutes() < 10 ? '0' + propDate.getMinutes() : propDate.getMinutes()
-    return day + '-' + month + " " + hour + ':' + min
+    return day + '-' + month + '-' + year + " " + hour + ':' + min
+})
+onMounted(async () => {
+    author.value = await userStore.getById(props.singleNote.userId)
 })
 </script>
 
@@ -23,9 +30,14 @@ const dateTime = computed(() => {
             <span v-for="tag in singleNote.tags" :key="tag">{{ tag }}</span>
         </div>
         <div class="note_item note_title">{{ singleNote.title }}</div>
-        <div class="note_item note_text">{{ singleNote.text }}</div>
+        <div class="note_item note_text">
+            {{ singleNote.text }}
+            <div class="hide_content"></div>
+        </div>
+
         <div class="note_item note_footer">
             <span>Заметка от: {{dateTime }}</span>
+            <span>{{author.username? 'Автор: '+author.username: 'Автор неизвестен'}}</span>
         </div>
     </div>
 </template>
@@ -44,6 +56,13 @@ const dateTime = computed(() => {
   @media (max-width: 639px) {
     width: 300px;
   }
+}
+.hide_content{
+  width: 100%;
+  height: 55px;
+  background: linear-gradient(to bottom, rgba(255, 255, 255, 0.5), rgba(255, 255, 255, 1));
+  position: absolute;
+  bottom: 35px;
 }
 .note_item{
   width: 100%;

@@ -14,7 +14,6 @@
 
 import {ref, Ref} from "vue";
 import RegistrationComponent from "@components/single-use-component/RegistrationComponent.vue";
-import {RegData} from "@/types.ts";
 
 defineEmits(['goBack'])
 const secretWord: Ref<string> = ref('')
@@ -23,8 +22,8 @@ function verifySecretWord() {
     //TODO проверка секретного слова
     isSecretWordVerify.value = true
 }
-function restoreUser(regData: RegData){
-    console.log(regData)
+function restoreUser(){
+
 }
 </script>
 <style lang="scss" scoped>

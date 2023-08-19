@@ -1,22 +1,27 @@
 import {createRouter, createWebHistory} from "vue-router";
 import {useUserStore} from "@/pinia/userStore";
 
+export const baseURL: string = '/notebook_latest'
 
 const routes = [
     {
-        path: "/",
+        path: `${baseURL}`,
+        redirect: `${baseURL}/main`
+    },
+    {
+        path: `${baseURL}/main`,
         component: () => import("@/components/pages/MainPage.vue"),
     },
     {
-        path: "/notes",
+        path: `${baseURL}/notes`,
         component: () => import("@/components/pages/AllNotesPage.vue"),
     },
     {
-        path: "/notes/:id",
+        path: `${baseURL}/notes/:id`,
         component: () => import("@/components/pages/SingleNotePage.vue"),
     },
     {
-        path: "/new",
+        path: `${baseURL}/new`,
         component: () => import("@/components/pages/NewNotePage.vue"),
         // beforeEnter: () => {
         //     const userStore = useUserStore()
@@ -26,7 +31,7 @@ const routes = [
         // },
     },
     {
-        path: "/login",
+        path: `${baseURL}/login`,
         component: () => import("@/components/pages/LoginPage.vue"),
         beforeEnter: () => {
             const userStore = useUserStore()
@@ -36,7 +41,7 @@ const routes = [
         }
     },
     {
-        path: "/registration",
+        path: `${baseURL}/registration`,
         component: () => import("@/components/pages/RegistrationPage.vue"),
         beforeEnter: () => {
             const userStore = useUserStore()

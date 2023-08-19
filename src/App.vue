@@ -1,5 +1,20 @@
 <script setup lang="ts">
 import TheNavigation from "@/components/single-use-component/TheNavigation.vue";
+import {onMounted} from "vue";
+import {IUser} from "@/types.ts";
+import {getOneUserById, saveUserToLocalStorage} from "@/localStorageMethods.ts";
+
+onMounted(() => {
+    if(!getOneUserById(99)){
+        const baseUser: IUser = {
+            id: 99,
+            username: "Max",
+            password: "123456789",
+            notes: [],
+        }
+        saveUserToLocalStorage(baseUser)
+    }
+})
 </script>
 
 <template>
@@ -19,11 +34,10 @@ import TheNavigation from "@/components/single-use-component/TheNavigation.vue";
   margin: 0 auto;
 }
 .rout-enter-from{
-  transform: translateX(-100vw);
+  opacity: 0;
 }
 .rout-leave-to{
-  position: absolute;
-  transform: translateX(100vw);
+  opacity: 0;
 }
 .rout-enter-active,
 .rout-leave-active{

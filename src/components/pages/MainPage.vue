@@ -1,7 +1,7 @@
 <template>
     <div class="all_wrapper">
         <span>
-            Программа - записная книжка. Создана с использованием:
+            Программа - блокнот. Создана с использованием:
         </span>
         <ul>
             <li>Vue3.js</li>
@@ -9,12 +9,11 @@
             <li>Vite</li>
             <li>vue-router, vue-animations, vuelidate</li>
             <li>Typescript</li>
-            <li>Axios</li>
             <li>Scss</li>
-            <li>JSON-server</li>
+            <li>LocalStorage</li>
         </ul>
 
-        <pre>
+        <pre style="font-family: Fifaks, sans-serif">
             Дополнительная информация:
             Users:
             {

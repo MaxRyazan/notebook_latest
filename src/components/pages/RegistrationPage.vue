@@ -6,14 +6,20 @@
 
 <script setup lang="ts">
 import RegistrationComponent from "@components/single-use-component/RegistrationComponent.vue";
-import {RegData} from "@/types.ts";
-import {useUserStore} from "@/pinia/userStore.ts";
+import {IUser, RegData} from "@/types.ts";
 import {useRouter} from "vue-router";
-const userStore = useUserStore()
+import {getLastUserId, saveUserToLocalStorage} from "@/localStorageMethods.ts";
+import {baseURL} from "@/router/v-router.ts";
 const router = useRouter()
 async function registr(regData: RegData){
-    await userStore.registration(regData)
-    await router.push('/')
+    const newUser: IUser = {
+        id: getLastUserId() + 1,
+        username: regData.username,
+        password: regData.password,
+        notes: []
+    }
+    saveUserToLocalStorage(newUser)
+    await router.push(`${baseURL}/main`)
 }
 </script>
 <style lang="scss" scoped>

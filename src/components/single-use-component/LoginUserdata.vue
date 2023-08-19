@@ -10,11 +10,13 @@
 </template>
 <script setup lang="ts">
 import {computed, ref, Ref} from "vue";
-import {LoginData} from "@/types.js";
-import {useUserStore} from "@/pinia/userStore.ts";
+import {IUser, LoginData} from "@/types.js";
 import {useRouter} from "vue-router";
 import {helpers} from "@vuelidate/validators";
 import useVuelidate from "@vuelidate/core";
+import {findByCredentials} from "@/localStorageMethods.ts";
+import {baseURL} from "@/router/v-router.ts";
+import {useUserStore} from "@/pinia/userStore.ts";
 
 const router = useRouter()
 const userStore = useUserStore()
@@ -42,8 +44,12 @@ const v$ = useVuelidate(validate, userData)
 async function login() {
     const isValid = await v$.value.$validate()
     if(!isValid)return
-    await userStore.login(userData.value.username, userData.value.password)
-    await router.push('/')
+    const result = findByCredentials(userData.value.username, userData.value.password)
+    console.log(result)
+    if(result?.id) {
+        userStore.user = result
+        await router.push(`${baseURL}/main`)
+    }
 }
 
 </script>

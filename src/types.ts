@@ -26,3 +26,16 @@ export interface RegData extends LoginData{
     secretWord: string,
     notes: Note[]
 }
+
+export interface BurgerButtons{
+    buttonStyles: string,
+    buttonText: string,
+    buttonType: ButtonTypes,
+    buttonEvent: () => any
+}
+export enum ButtonTypes{
+    DEFAULT = 'default',
+    ROUND_VIOLET = 'round_violet',
+    ROUND_WARNING = 'round_warning'
+
+}

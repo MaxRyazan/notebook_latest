@@ -10,7 +10,7 @@
 </template>
 <script setup lang="ts">
 import {computed, ref, Ref} from "vue";
-import {IUser, LoginData} from "@/types.js";
+import {LoginData} from "@/types.js";
 import {useRouter} from "vue-router";
 import {helpers} from "@vuelidate/validators";
 import useVuelidate from "@vuelidate/core";

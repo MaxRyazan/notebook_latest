@@ -7,6 +7,7 @@ import {if_auth} from "@/directives/if_auth";
 import ReusableButton from "@/components/reusable/ReusableButton.vue";
 import ReusableInput from "@/components/reusable/Reusable-Input.vue";
 import ReusableTextArea from "@reusable/ReusableTextArea.vue";
+import ReusableBurger from "@reusable/ReusableBurger.vue";
 const pinia = createPinia()
 
 const app = createApp(App)
@@ -16,5 +17,6 @@ const app = createApp(App)
         .directive('if-auth', if_auth)
         .component("ReusableButton", ReusableButton)
         .component("ReusableInput", ReusableInput)
+        .component("ReusableBurger", ReusableBurger)
         .component("ReusableTextArea", ReusableTextArea)
         .mount('#app')

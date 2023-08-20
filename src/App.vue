@@ -31,6 +31,7 @@ onMounted(() => {
 <style scoped lang="scss">
 .main_container{
   max-width: 1700px;
+  padding: 0 5px;
   margin: 0 auto;
 }
 .rout-enter-from{

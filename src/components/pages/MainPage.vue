@@ -11,6 +11,7 @@
             <li>Typescript</li>
             <li>Scss</li>
             <li>LocalStorage</li>
+            <li>Adaptive design</li>
         </ul>
 
         <pre style="font-family: Fifaks, sans-serif">

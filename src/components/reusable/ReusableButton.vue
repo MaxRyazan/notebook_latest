@@ -22,25 +22,5 @@ defineEmits(['push'])
 </template>
 
 <style scoped lang="scss">
-.round_violet{
-  border-radius: 20px;
-  border: 2px solid $primaryViolet;
-  padding: 3px 7px;
-  background-color: $white;
-  color: $secondaryViolet;
-  &:hover{
-    border: 2px solid $secondaryViolet;
-  }
-}
-.round_warning{
-  border-radius: 20px;
-  border: 2px solid $primaryWarning;
-  padding: 3px 7px;
-  background-color: $white;
-  color: $primaryWarning;
-  &:hover{
-    border: 2px solid $secondaryWarning;
-    color: $secondaryWarning;
-  }
-}
+
 </style>

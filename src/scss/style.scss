@@ -1,3 +1,4 @@
+@import "vars";
 @font-face {
   font-weight: 400;
   font-family: Fifaks;
@@ -11,4 +12,28 @@ body {
 }
 li{
   list-style-type: none;
+}
+.round_violet{
+  border-radius: 20px;
+  border: 2px solid $primaryViolet;
+  padding: 3px 7px;
+  background-color: $white;
+  color: $secondaryViolet;
+  &:hover{
+    border: 2px solid $secondaryViolet;
+  }
+}
+.round_warning{
+  border-radius: 20px;
+  border: 2px solid $primaryWarning;
+  padding: 3px 7px;
+  background-color: $white;
+  color: $primaryWarning;
+  &:hover{
+    border: 2px solid $secondaryWarning;
+    color: $secondaryWarning;
+  }
+}
+.default{
+
 }

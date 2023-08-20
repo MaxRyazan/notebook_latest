@@ -8,11 +8,12 @@
 import {useNoteStore} from "@/pinia/noteStore.ts";
 import {onMounted} from "vue";
 import ReusableNoteCard from "@reusable/ReusableNoteCard.vue";
+import {getAllNotesFromLS} from "@/localStorageMethods.ts";
 
 const noteStore = useNoteStore()
 
-onMounted(async () => {
-    noteStore.notes = await noteStore.getNotes()
+onMounted( () => {
+    noteStore.notes = getAllNotesFromLS()
 })
 </script>
 <style lang="scss" scoped>

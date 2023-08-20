@@ -1,10 +1,9 @@
 <script setup lang="ts">
 import {IUser, Note} from "@/types.ts";
 import {computed, onMounted, ref, Ref} from "vue";
-import {useUserStore} from "@/pinia/userStore.ts";
+import {getOneUserById} from "@/localStorageMethods.ts";
 
-const userStore = useUserStore()
-const author: Ref<IUser> = ref({} as IUser)
+const author: Ref<IUser | undefined> = ref({} as IUser | undefined)
 const props = defineProps<{
     singleNote: Note
 }>()
@@ -19,7 +18,7 @@ const dateTime = computed(() => {
     return day + '-' + month + '-' + year + " " + hour + ':' + min
 })
 onMounted(async () => {
-    author.value = await userStore.getById(props.singleNote.userId)
+    author.value = getOneUserById(props.singleNote.userId)
 })
 </script>
 
@@ -37,7 +36,7 @@ onMounted(async () => {
 
         <div class="note_item note_footer">
             <span>Заметка от: {{dateTime }}</span>
-            <span>{{author.username? 'Автор: '+author.username: 'Автор неизвестен'}}</span>
+            <span>{{author?.username? 'Автор: '+author?.username: 'Автор неизвестен'}}</span>
         </div>
     </div>
 </template>

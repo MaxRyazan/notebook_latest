@@ -42,7 +42,9 @@ export function saveUserToLocalStorage(dataToSave: IUser) {
 export function saveNoteToLocalStorage(dataToSave: Note) {
     const allNotes: Note[] | undefined = getAllNotesFromLS()
     if (!allNotes?.length) {
-        localStorage.setItem('notes', JSON.stringify(dataToSave))
+        const notes = []
+        notes.push(dataToSave)
+        localStorage.setItem('notes', JSON.stringify(notes))
     } else {
         if (!allNotes.some((noteFromLS: Note): boolean => normalizeString(noteFromLS.title) === normalizeString(dataToSave.title))) {
             allNotes.push(dataToSave)
@@ -59,11 +61,17 @@ export function getLastUserId(): number {
     users.sort(sortASC)
     return users[users.length-1].id
 }
+export function getLastNoteId(): number {
+    const notes = getAllNotesFromLS()
+    if(!notes?.length) { return 0 }
+    notes.sort(sortASC)
+    return notes[notes.length-1].id
+}
 
 function normalizeString(str: string): string {
     return str.toLocaleLowerCase().replace(" ", "")
 }
 
-function sortASC(a: IUser, b: IUser){
+function sortASC(a: {id: number}, b: {id: number}){
     return a.id - b.id
 }

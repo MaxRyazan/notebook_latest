@@ -1,9 +1,10 @@
 <template>
     <div class="new_note_wrapper">
         <form class="new_note" @submit.prevent="createNote">
-            <reusable-input :errors="v$.title.$errors" no_border width="100%" label="Название заметки:" v-model="newNote.title" autofocus/>
-            <reusable-input no_border width="100%" label="Тэги:" v-model="stringTags" />
-            <reusable-text-area :errors="v$.text.$errors" height="70%" v-model="newNote.text"/>
+            <reusable-input no_border width="100%" label="Название заметки:"
+                            v-model="newNote.title" autofocus/>
+            <reusable-input no_border width="100%" label="Тэги:" v-model="stringTags"/>
+            <reusable-text-area height="70%" v-model="newNote.text"/>
             <reusable-button style="align-self: end" width="150px" round_violet>Создать</reusable-button>
         </form>
     </div>
@@ -11,61 +12,52 @@
 
 <script setup lang="ts">
 import ReusableInput from "@reusable/Reusable-Input.vue";
-import {computed, Ref, ref} from "vue";
-import {NewNote} from "@/types.ts";
+import {Ref, ref} from "vue";
+import {Note} from "@/types.ts";
 import {useUserStore} from "@/pinia/userStore.ts";
 import ReusableButton from "@reusable/ReusableButton.vue";
-import {helpers} from "@vuelidate/validators";
-import useVuelidate from "@vuelidate/core";
-import {useNoteStore} from "@/pinia/noteStore.ts";
+
+import {getLastNoteId, saveNoteToLocalStorage} from "@/localStorageMethods.ts";
+
 const userStore = useUserStore()
 
-const noteStore = useNoteStore()
 const stringTags: Ref<string> = ref('')
-const  newNote: Ref<NewNote> = ref({
-    userId: userStore.user.id? userStore.user.id : 0,
+const newNote: Ref<Note> = ref({
+    userId: userStore.user.id ? userStore.user.id : 0,
     title: '',
     tags: [],
     text: '',
-    dateTime: 0
+    dateTime: 0,
+    id: 0
 })
 
 
-async function createNote(){
-    const isValid = await v$.value.$validate()
-    if(!isValid)return
+async function createNote() {
     Object.assign(newNote.value.tags, transformTags(stringTags.value))
     newNote.value.dateTime = Date.now()
-    await noteStore.createNote(newNote.value)
+    newNote.value.id = getLastNoteId()
+    saveNoteToLocalStorage(newNote.value)
     newNote.value.title = ''
     newNote.value.text = ''
     stringTags.value = ''
 }
 
-const validation = computed(() => {
-    return {
-        title: {titleValidator: helpers.withMessage('Минимум 2 символа!', textValidator)},
-        text: {textValidator: helpers.withMessage('Заметка должна быть длиннее 2 символов!', textValidator)},
-    }
-})
 
-function transformTags(stringTags: string): string[]{
+function transformTags(stringTags: string): string[] {
     return stringTags.trim().split(" ")
 }
-const textValidator = (value: string) => {
-    return value.length > 2
-}
-const v$ = useVuelidate(validation, newNote)
+
 </script>
 <style lang="scss" scoped>
-.new_note_wrapper{
+.new_note_wrapper {
   max-width: 1700px;
   margin: 0 auto;
   display: flex;
   align-items: center;
   height: calc(100vh - 60px);
 }
-.new_note{
+
+.new_note {
   margin: 0 auto;
   max-width: 800px;
   width: 50%;

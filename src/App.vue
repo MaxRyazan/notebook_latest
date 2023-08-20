@@ -34,10 +34,12 @@ onMounted(() => {
   margin: 0 auto;
 }
 .rout-enter-from{
-  opacity: 0;
+  position: absolute;
+  transform: translateX(-50vw);
 }
 .rout-leave-to{
-  opacity: 0;
+  position: absolute;
+  transform: translateX(50vw);
 }
 .rout-enter-active,
 .rout-leave-active{

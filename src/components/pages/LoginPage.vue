@@ -1,7 +1,11 @@
 <template>
     <div class="form_wrapper">
-        <login-userdata class="component" @forgot="isForgot=true" v-if="!isForgot"/>
-        <restore-userdata class="component" @restore="isForgot=false" @goBack="isForgot=false" v-if="isForgot"/>
+        <transition name="fade">
+            <login-userdata @forgot="isForgot=true" v-if="!isForgot"/>
+        </transition>
+        <transition name="fade">
+            <restore-userdata @restore="isForgot=false" @goBack="isForgot=false" v-if="isForgot"/>
+        </transition>
     </div>
 </template>
 
@@ -20,8 +24,17 @@ const isForgot = ref(false)
   max-width: 400px;
   margin: 30vh auto 0;
 }
-.component{
-  transition: .25s;
+
+.fade-enter-from{
   position: absolute;
+  transform: translateX(-50vw);
+}
+.fade-leave-to{
+  position: absolute;
+  transform: translateX(50vw);
+}
+.fade-enter-active,
+.fade-leave-active{
+  transition: .3s all linear;
 }
 </style>

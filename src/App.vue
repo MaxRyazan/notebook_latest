@@ -38,6 +38,7 @@ onMounted(() => {
   justify-content: center;
   align-items: center;
   overflow: hidden;
+  padding: 10px 0;
 }
 
 .rout-enter-from {

@@ -24,10 +24,6 @@ async function registr(regData: RegData){
 </script>
 <style lang="scss" scoped>
 .form_wrapper {
-  position: relative;
-  width: 100%;
-  max-width: 400px;
-  margin: 50vh auto 0;
-  transform: translateY(-20vh);
+  padding: 20px;
 }
 </style>

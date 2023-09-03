@@ -47,17 +47,12 @@ function transformTags(stringTags: string): string[] {
 </script>
 <style lang="scss" scoped>
 .new_note_wrapper {
-  max-width: 1700px;
-  margin: 0 auto;
-  display: flex;
-  align-items: center;
-  height: calc(100vh - 60px);
+  width: 50%;
+  min-width: 800px;
 }
 
 .new_note {
-  margin: 0 auto;
-  max-width: 800px;
-  width: 50%;
+  width: 100%;
   min-width: 300px;
   height: 50vh;
   padding: 30px;

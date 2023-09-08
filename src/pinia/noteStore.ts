@@ -6,11 +6,4 @@ export const useNoteStore = defineStore('noteStore',{
         notes: [] as Note[]
     }),
 
-    getters:{
-        getNoteByTag: (state: any) => {
-            //TODO написать реализацию
-            console.log(state)
-            return ''
-        }
-    }
 })

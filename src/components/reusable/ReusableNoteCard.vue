@@ -2,33 +2,19 @@
 import {IUser, Note} from "@/types.ts";
 import {computed, onMounted, ref, Ref} from "vue";
 import {getOneUserById} from "@/localStorageMethods.ts";
-import {useNoteStore} from "@/pinia/noteStore.ts";
-const noteStore = useNoteStore()
+import {normalizeTime} from "@/typescript/helpers.ts";
 
 const author: Ref<IUser | undefined> = ref({} as IUser | undefined)
-const isModalOpen: Ref<boolean> = ref(false)
 const props = defineProps<{
     singleNote: Note
 }>()
-
-function ternal(param: any) {
-    return param < 10 ? '0' + param : param
-}
+defineEmits<{
+    (e: 'showAllNotesWithThatTag', tag: string): void
+}>()
 
 const dateTime = computed(() => {
-    const propDate = new Date(props.singleNote.dateTime)
-    const day = propDate.getDate()
-    const month = ternal((propDate.getMonth() + 1))
-    const year = propDate.getFullYear()
-    const hour = ternal(propDate.getHours())
-    const min = ternal(propDate.getMinutes())
-    return day + '-' + month + '-' + year + " " + hour + ':' + min
+    return normalizeTime(props.singleNote.dateTime)
 })
-
-function showAllNotesWithThatTag(tag: string){
-    isModalOpen.value = true
-    console.log(noteStore.getNoteByTag(tag))
-}
 
 onMounted(async () => {
     author.value = getOneUserById(props.singleNote.userId)
@@ -42,7 +28,7 @@ onMounted(async () => {
             <span
                     class="note_item--tag"
                     v-for="tag in singleNote.tags" :key="tag"
-                    @click="showAllNotesWithThatTag(tag)"
+                    @click="$emit('showAllNotesWithThatTag',tag)"
             >{{ tag }}</span>
         </div>
         <div class="note_item note_title">{{ singleNote.title }}</div>
@@ -53,11 +39,8 @@ onMounted(async () => {
 
         <div class="note_item note_footer">
             <span>Заметка от: {{ dateTime }}</span>
-            <span>{{ author?.username ? 'Автор: ' + author?.username : 'Автор неизвестен' }}</span>
+            <span> {{ author?.username ? 'Автор: ' + author?.username : ' Автор неизвестен' }}</span>
         </div>
-    </div>
-    <div class="modal__wrapper" v-if="isModalOpen">
-
     </div>
 </template>
 

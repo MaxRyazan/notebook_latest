@@ -32,11 +32,10 @@ onMounted(() => {
 .main_container {
   position: relative;
   max-width: 1700px;
-  min-height: calc(100vh - 70px);
+  min-height: calc(100vh - 90px);
   margin: 0 auto;
   display: flex;
   justify-content: center;
-  align-items: center;
   overflow: hidden;
   padding: 10px 0;
 }

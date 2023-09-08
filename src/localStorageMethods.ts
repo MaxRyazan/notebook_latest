@@ -19,9 +19,10 @@ export function findByCredentials(username: string, password: string): IUser | u
     }
 }
 
-export function getAllNotesFromLS(): Note[] | undefined {
+export function getAllNotesFromLS(): Note[] {
     const notes: string | null = localStorage.getItem('notes')
     if (notes) return JSON.parse(notes)
+    else return []
 }
 
 export function saveUserToLocalStorage(dataToSave: IUser) {

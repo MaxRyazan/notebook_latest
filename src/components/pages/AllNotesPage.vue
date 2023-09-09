@@ -1,12 +1,12 @@
 <template>
     <div class="wrapper">
-        <div ref="allNotesWrapper" class="item all_notes_wrapper">
+        <div class="all_notes_wrapper">
             <reusable-note-card
                     @show-all-notes-with-that-tag="filterByTag"
                     v-for="note in noteStore.notes" :key="note.id" :singleNote="note"/>
         </div>
         <transition name="fade">
-            <filtered-notes-window class="item_list" @close-window="filter=''" :tag="filter" v-if="filter.length"/>
+            <filtered-notes-window @close-window="filter=''" :tag="filter" v-if="filter.length"/>
         </transition>
     </div>
 </template>
@@ -20,7 +20,6 @@ import FilteredNotesWindow from "@components/single-use-component/FilteredNotesW
 
 const noteStore = useNoteStore()
 const filter = ref('')
-const allNotesWrapper = ref()
 onMounted(() => {
     noteStore.notes = getAllNotesFromLS()
 })

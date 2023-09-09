@@ -1,0 +1,1 @@
+import{b as n,y as a,r,f as l,s as c,c as i,t as u,o as p}from"./index-3cc4f03c.js";const d=n({__name:"SingleNotePage",setup(m){const s=a(),e=r({});return l(()=>{const t=c();e.value=t.find(o=>o.id.toString()===s.params.id)}),(t,o)=>(p(),i("div",null,u(e.value.text),1))}});export{d as default};

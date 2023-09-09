@@ -17,7 +17,7 @@ const routes = [
         component: () => import("@/components/pages/AllNotesPage.vue"),
     },
     {
-        path: `${baseURL}/notes/:id`,
+        path: `${baseURL}/:id`,
         component: () => import("@/components/pages/SingleNotePage.vue"),
     },
     {

@@ -1,12 +1,12 @@
 <template>
     <div class="new_note_wrapper">
-        <form class="new_note" @submit.prevent="createNote">
+        <div class="new_note">
             <reusable-input no_border width="100%" label="Название заметки:"
                             v-model="title" autofocus/>
             <reusable-input no_border width="100%" label="Тэги:" v-model="tags"/>
             <reusable-text-area height="70%" v-model="text"/>
-            <reusable-button style="align-self: end" width="150px" round_violet>Создать</reusable-button>
-        </form>
+            <reusable-button @push="createNote" style="align-self: end" width="150px" round_violet>Создать</reusable-button>
+        </div>
     </div>
 </template>
 
@@ -34,11 +34,15 @@ async function createNote() {
         tags: transformTags(tags.value),
         dateTime: Date.now(),
     })
+    clearFields()
+}
+
+function clearFields(){
     title.value = ''
     text.value = ''
     tags.value = ''
+    console.log(text.value)
 }
-
 
 function transformTags(stringTags: string): string[] {
     return stringTags.trim().split(" ")

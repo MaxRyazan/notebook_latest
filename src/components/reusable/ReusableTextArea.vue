@@ -4,6 +4,7 @@ import {ref} from "vue";
 
 const text = ref()
 const props = defineProps<{
+    modelValue: string,
     height?: string,
     errors?: ErrorObject[]
 }>()
@@ -11,7 +12,7 @@ const props = defineProps<{
 
 <template>
     <div :style="{height: props.height}" class="textarea_wrapper">
-        <textarea ref="text" class="textarea"  @input="$emit('update:modelValue', text.value)"/>
+        <textarea :value="modelValue" ref="text" class="textarea"  @input="$emit('update:modelValue', text.value)"/>
         <div class="error_wrapper" v-if="props.errors?.length">
             <span v-for="error in props.errors" :key="error.$uid">{{ error.$message }}</span>
         </div>

@@ -6,8 +6,8 @@ defineOptions({
     inheritAttrs: false
 })
 const props = defineProps<{
-    modelValue: String,
-    label?: String,
+    modelValue: string,
+    label?: string,
     width?: string,
     typePassword?: boolean,
     no_border?: boolean
@@ -24,6 +24,7 @@ const input = ref()
                :style="{width: props.width}"
                :type="props.typePassword? 'password':'text'"
                @input="$emit('update:modelValue', input.value)"
+               :value="modelValue"
                ref="input"
                v-bind="$attrs">
         <div class="error_wrapper" v-if="props.errors?.length">

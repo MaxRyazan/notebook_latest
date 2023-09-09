@@ -4,8 +4,10 @@ import {computed, onMounted, Ref, ref, watch} from "vue";
 import {Note} from "@/types.ts";
 import {normalizeTime} from "@/typescript/helpers.ts";
 import ReusableButton from "@reusable/ReusableButton.vue";
+import {useRouter} from "vue-router";
 
 const noteStore = useNoteStore()
+const router = useRouter()
 
 defineEmits<{ (e: 'closeWindow'): void }>()
 const props = defineProps <{ tag: string }>()
@@ -31,7 +33,7 @@ watch(getPropTag, () => {
             <span class="filter_tag">{{ props.tag }}:</span>
         </div>
         <div v-for="note in filteredNotes" :key="note.dateTime">
-            <div class="filter_line">
+            <div class="filter_line" @click="router.push(note.id.toString())">
                 <span>{{ note.title }}</span>
                 <span>{{ normalizeTime(note.dateTime) }}</span>
             </div>
@@ -65,5 +67,11 @@ watch(getPropTag, () => {
   margin-bottom: 3px;
   cursor: pointer;
   justify-content: space-between;
+  white-space: nowrap;
+  &:hover{
+    background-color: $primaryWarning;
+    padding: 4px 4px;
+    transition: .2s linear;
+  }
 }
 </style>
